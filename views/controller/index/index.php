@@ -8,8 +8,12 @@
                 </div>
                 <div class="col-md-9">
                   <div class="card-body">
-                    <h5 class="card-title"><?php echo $_SESSION['user']['email']; ?></h5>
-                    <p class="card-text"><small class="text-muted"><?php echo $_SESSION['user']['last_access']; ?></small></p>
+                    <h5 class="card-title"><?php echo $_SESSION['user']['name']; ?></h5>
+                    <p class="card-text text-left">
+                        <small class="text-muted">
+                            Último acceso: <?php echo $_SESSION['user']['last_access']; ?>
+                        </small>
+                    </p>
                   </div>
                 </div>
               </div>
