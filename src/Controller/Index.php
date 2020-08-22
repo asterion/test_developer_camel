@@ -1,12 +1,14 @@
 <?php
 namespace App\Controller;
 
+use App\Controller\Controller;
+
 /**
  *
  */
-class Index
+class Index extends Controller
 {
-    public function __construct() {
-        var_dump(self::class);
+    public function index() {
+        $this->show( 'controller/index/index.php' );
     }
 }

@@ -16,6 +16,9 @@ if ( ! isset( $_SESSION['user'] ) ) {
     $config['server']['REQUEST_URI'] = '/login';
 }
 
-$app = new Framework($config);
+$app = new Framework($config, array(
+    'get' => $_GET,
+    'post' => $_POST,
+));
 
 $controller = $app->route();
