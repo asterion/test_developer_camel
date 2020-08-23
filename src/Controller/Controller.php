@@ -4,8 +4,8 @@ namespace App\Controller;
 class Controller {
     use \App\Camel\Debug;
 
-    private $config;
-    private $data;
+    protected $config;
+    protected $data;
     protected $db;
 
     public function __construct($config, $data) {

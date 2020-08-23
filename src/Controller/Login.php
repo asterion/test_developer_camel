@@ -11,15 +11,18 @@ class Login extends Controller
     public function index() {
         // header('UNAUTHORIZED', true, 401);
 
-        $user = $this->isUser($this->getPost('email'), $this->getPost('password'));
+        $user = $this->isUser($this->getPost('email'));
 
         if ( $user ) {
-            $_SESSION['user'] = $this->getUser($this->getPost('email'));
+            $user = $this->getUser($this->getPost('email'));
 
-            $sql = sprintf("UPDATE users SET last_access = '%s' WHERE email = '%s'", date('Y-m-d H:i:s'), $_SESSION['user']['email']);
-            $this->db->exec($sql);
+            if ( password_verify($this->getPost('password') . \App\Camel\Framework::SALT, $user['password']) ) {
+                $_SESSION['user'] = $user;
 
-            header('Location: /');
+                $sql = sprintf("UPDATE users SET last_access = '%s' WHERE email = '%s'", date('Y-m-d H:i:s'), $_SESSION['user']['email']);
+                $this->db->exec($sql);
+                header('Location: /');
+            }
         }
 
         $this->show( 'controller/login/index.php' );
@@ -50,15 +53,13 @@ class Login extends Controller
         return null;
     }
 
-    protected function isUser($email, $password) {
-        $sql = sprintf('SELECT id FROM users WHERE email = ? AND password = ?');
+    protected function isUser($email) {
+        $sql = sprintf('SELECT id FROM users WHERE email = ?');
 
         $sth = $this->db->prepare($sql);
         $params = array(
-            $email,
-            $password,
+            $email
         );
-
         $sth->execute($params);
 
         $data = $sth->fetchAll();
