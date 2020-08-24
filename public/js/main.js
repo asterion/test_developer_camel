@@ -9,6 +9,6 @@ var app = new Vue({
   mounted() {
     axios
       .get('/api/users')
-      .then(response => (this.users = response))
+      .then(response => (this.users = response.data['hydra:member']))
   }
 })

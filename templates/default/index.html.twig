@@ -9,7 +9,9 @@
             <div class="table-responsive">
                 <table class="table">
                     <tr v-for="item in users">
-                        <td>{{ item }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.role }}</td>
                     </tr>
                 </table>
             </div>
