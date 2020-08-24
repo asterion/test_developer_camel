@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home APP!{% endblock %}
+
+{% block body %}
+    <div id="app">
+        {% verbatim %}
+            {{message}}
+            <div class="table-responsive">
+                <table class="table">
+                    <tr v-for="item in users">
+                        <td>{{ item }}</td>
+                    </tr>
+                </table>
+            </div>
+        {% endverbatim %}
+    </div>
+{% endblock %}
