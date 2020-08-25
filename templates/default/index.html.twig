@@ -3,18 +3,33 @@
 {% block title %}Home APP!{% endblock %}
 
 {% block body %}
-    <div id="app">
-        {% verbatim %}
-            {{message}}
-            <div class="table-responsive">
-                <table class="table">
-                    <tr v-for="item in users">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.email }}</td>
-                        <td>{{ item.role }}</td>
-                    </tr>
-                </table>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div id="app" class="col-md-10">
+                {% verbatim %}
+                    {{message}}
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr v-for="item in users">
+                                <td>
+                                    <input type="text" v-model="item.name">
+                                </td>
+                                <td>
+                                    <input type="text" v-model="item.email">
+                                </td>
+                                <td>
+                                    <input type="text" v-model="item.role">
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" v-on:click="edit(item)">
+                                        Guardar
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endverbatim %}
             </div>
-        {% endverbatim %}
+        </div>
     </div>
 {% endblock %}

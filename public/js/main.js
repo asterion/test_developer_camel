@@ -10,5 +10,12 @@ var app = new Vue({
     axios
       .get('/api/users')
       .then(response => (this.users = response.data['hydra:member']))
+  },
+  methods: {
+    edit: function(item){
+      axios
+        .patch('/api/users/' + item.id)
+        .then(response => (this.lunes = 'foo'))
+    }
   }
 })
